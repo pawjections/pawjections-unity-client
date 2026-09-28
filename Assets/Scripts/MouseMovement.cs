@@ -55,6 +55,9 @@ public class MouseMovement : MonoBehaviour
             return;
         }
 
+        // No cat in view — wander
+        if (!catDetector.HasCat) return;
+
         Vector2 catPos = catDetector.GetCatWorldPosition();
         float distance = Vector2.Distance(transform.position, catPos);
 

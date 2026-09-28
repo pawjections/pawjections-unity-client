@@ -1,112 +1,59 @@
 using UnityEngine;
-using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Concurrent;
 
+/// <summary>
+/// Tracks where the cat is in the game world, from the webcam detection mapped
+/// through the projection calibration.
+/// </summary>
 public class CatDetector : MonoBehaviour
 {
-    [Header("UDP")]
-    public string listenIP = "127.0.0.1";
-    public int listenPort = 9000;
-
-    [Header("Coordinate Mode")]
-    public bool useNormalized = true;
-    public int projWidth = 1920; 
-    public int projHeight = 1080;
-
     [Header("Smoothing")]
     [Range(0f, 1f)] public float lerp = 0.6f;
 
-    [Serializable]
-    public class Msg
-    {
-        public double t;
-        public int id;
-        public float conf;
-        public float Ux, Uy;
-        public float Ux_n, Uy_n;
-        public float Bw, Bh;
-    }
+    [Tooltip("Keep reporting the last position for this long when the cat is briefly lost")]
+    public float dropoutHoldSeconds = 0.3f;
 
-    UdpClient _udp;
-    bool _running;
-
-    readonly ConcurrentQueue<Msg> _queue = new ConcurrentQueue<Msg>();
+    private CatVision _vision;
+    private CameraCalibration _calibration;
 
     private Camera _cam;
     private Vector3 _catWorldPos;
     private bool _hasCatPos = false;
+    private float _lastSeenTime = float.NegativeInfinity;
+
+    /// <summary>True while the cat is in view, or was a moment ago.</summary>
+    public bool HasCat => _hasCatPos && Time.unscaledTime - _lastSeenTime <= dropoutHoldSeconds;
 
     void Awake()
     {
         _cam = Camera.main;
         Application.runInBackground = true;
+
+        if (!TryGetComponent(out _vision))
+            _vision = gameObject.AddComponent<CatVision>();
+        if (!TryGetComponent(out _calibration))
+            _calibration = gameObject.AddComponent<CameraCalibration>();
     }
 
-    void OnEnable() => StartUDP();
-    void OnDisable() => StopUDP();
+    void OnEnable() => _vision.ResultReady += OnVisionResult;
+    void OnDisable() => _vision.ResultReady -= OnVisionResult;
 
-    void Update()
+    void OnVisionResult()
     {
-        // Grab newest cat position
-        if (_queue.TryDequeue(out var last))
-        {
-            float ux = useNormalized ? Mathf.Clamp01(last.Ux_n) : Mathf.Clamp(last.Ux / projWidth, 0f, 1f);
-            float uy = useNormalized ? Mathf.Clamp01(last.Uy_n) : Mathf.Clamp(last.Uy / projHeight, 0f, 1f);
+        if (!_vision.HasCat || !_calibration.TryCameraToScreen(_vision.CatPosition, out var screen))
+            return;
 
-            // Convert to screen pixels
-            float sx = ux * Screen.width;
-            float sy = uy * Screen.height;
-            
-            // Flip Y: screen y goes from top to bottom
-            sy = Screen.height - sy;
+        // Convert to screen pixels, flipping Y since screen coordinates start at the bottom
+        float sx = screen.x * Screen.width;
+        float sy = Screen.height - screen.y * Screen.height;
 
-            // Convert to world position
-            Vector3 screenPoint = new Vector3(sx, sy, Mathf.Abs(_cam.transform.position.z));
-            Vector3 newWorldPos = _cam.ScreenToWorldPoint(screenPoint);
+        // Convert to world position
+        Vector3 screenPoint = new Vector3(sx, sy, Mathf.Abs(_cam.transform.position.z));
+        Vector3 newWorldPos = _cam.ScreenToWorldPoint(screenPoint);
 
-            _catWorldPos = Vector3.Lerp(_catWorldPos, newWorldPos, lerp);
-            _hasCatPos = true;
-
-            // Keep only the latest entry
-            while (_queue.TryDequeue(out _)) { }
-        }
-    }
-
-    void StartUDP()
-    {
-        if (_running) return;
-        _running = true;
-
-        _udp = new UdpClient(new IPEndPoint(IPAddress.Parse(listenIP), listenPort));
-        _ = Task.Run(async () =>
-        {
-            while (_running)
-            {
-                try
-                {
-                    var res = await _udp.ReceiveAsync();
-                    string json = Encoding.UTF8.GetString(res.Buffer);
-                    var msg = JsonUtility.FromJson<Msg>(json);
-                    _queue.Enqueue(msg);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogWarning($"UDP receive error: {e.Message}");
-                }
-            }
-        });
-    }
-
-    void StopUDP()
-    {
-        _running = false;
-        try { _udp?.Close(); } catch { }
-        _udp = null;
-        while (_queue.TryDequeue(out _)) { }
+        // Smooth while tracking, but jump straight to a cat that just reappeared
+        _catWorldPos = HasCat ? Vector3.Lerp(_catWorldPos, newWorldPos, lerp) : newWorldPos;
+        _hasCatPos = true;
+        _lastSeenTime = Time.unscaledTime;
     }
 
     public Vector2 GetCatWorldPosition()
@@ -119,7 +66,7 @@ public class CatDetector : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (_hasCatPos)
+        if (HasCat)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(_catWorldPos, 0.1f);
