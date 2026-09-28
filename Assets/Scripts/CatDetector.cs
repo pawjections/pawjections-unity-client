@@ -32,6 +32,8 @@ public class CatDetector : MonoBehaviour
             _vision = gameObject.AddComponent<CatVision>();
         if (!TryGetComponent(out _calibration))
             _calibration = gameObject.AddComponent<CameraCalibration>();
+        if (!TryGetComponent(out CatAura _))
+            gameObject.AddComponent<CatAura>();
     }
 
     void OnEnable() => _vision.ResultReady += OnVisionResult;
