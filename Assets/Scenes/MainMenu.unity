@@ -151,8 +151,8 @@ RectTransform:
   - {fileID: 627079604}
   - {fileID: 1588105886}
   - {fileID: 1199715195}
-  - {fileID: 1685965587}
   - {fileID: 35877390}
+  - {fileID: 1685965587}
   m_Father: {fileID: 389838456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -248,7 +248,7 @@ MonoBehaviour:
         m_MethodName: Show
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1843153530}
+          m_ObjectArgument: {fileID: 706012420}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -911,8 +911,8 @@ RectTransform:
   - {fileID: 82124647}
   - {fileID: 471829498}
   - {fileID: 225502184}
-  - {fileID: 2112002837}
   - {fileID: 747089704}
+  - {fileID: 2112002837}
   - {fileID: 1143470904}
   m_Father: {fileID: 389838456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2212,8 +2212,8 @@ RectTransform:
   - {fileID: 1309171985}
   - {fileID: 360500960}
   - {fileID: 1604135048}
-  - {fileID: 1734204723}
   - {fileID: 794607358}
+  - {fileID: 1734204723}
   m_Father: {fileID: 389838456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2716,7 +2716,7 @@ MonoBehaviour:
         m_MethodName: Show
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1843153530}
+          m_ObjectArgument: {fileID: 281179167}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
