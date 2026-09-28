@@ -27,16 +27,28 @@ Run `git lfs install` once before cloning.
 
 Unity's [Smart Merge](https://docs.unity3d.com/6000.6/Documentation/Manual/SmartMerge.html)
 tool, UnityYAMLMerge, resolves conflicts in scenes, prefabs, and other Unity
-YAML files much better than a plain text merge. To use it with `git mergetool`,
-add the following to your `.git/config` or `~/.gitconfig`:
+YAML files much better than a plain text merge. To use it, add the following
+to your `.git/config` or `~/.gitconfig`:
 
 ```ini
 [merge]
     tool = unityyamlmerge
+[merge "unityyamlmerge"]
+    name = Unity SmartMerge
+    driver = '<path to UnityYAMLMerge>' merge -h -p --force --fallback none %O %B %A %A
+    recursive = binary
 [mergetool "unityyamlmerge"]
     trustExitCode = false
-    cmd = '<path to UnityYAMLMerge>' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
+    cmd = '<path to UnityYAMLMerge>' merge -p \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\"
 ```
+
+The `merge "unityyamlmerge"` driver runs automatically on every merge and
+rebase for the files `.gitattributes` marks as `unity-yaml`. Without it, Git
+silently falls back to a plain text merge for them.
+
+When the driver hits a real conflict (both sides changed the same property),
+the file is marked as conflicted but contains no conflict markers, only the
+incoming value. Resolve it with `git mergetool` rather than `git add`.
 
 For editors installed through Unity Hub, `<path to UnityYAMLMerge>` is:
 
