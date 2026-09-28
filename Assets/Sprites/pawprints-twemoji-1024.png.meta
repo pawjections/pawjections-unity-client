@@ -1,0 +1,379 @@
+fileFormatVersion: 2
+guid: 0d57aa41bf237418286417ab2cae1056
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5012999412746517109
+    second: pawprints-twemoji-1024_0
+  - first:
+      213: 2998571255025571295
+    second: pawprints-twemoji-1024_1
+  - first:
+      213: 8261848222465254492
+    second: pawprints-twemoji-1024_2
+  - first:
+      213: -7280268274176939888
+    second: pawprints-twemoji-1024_3
+  - first:
+      213: 7742724566887481645
+    second: pawprints-twemoji-1024_4
+  - first:
+      213: -5547347259612868116
+    second: pawprints-twemoji-1024_5
+  - first:
+      213: -1905484742149243499
+    second: pawprints-twemoji-1024_6
+  - first:
+      213: -4739888336887054950
+    second: pawprints-twemoji-1024_7
+  - first:
+      213: -1301068430218694880
+    second: pawprints-twemoji-1024_8
+  - first:
+      213: 6354292523015846792
+    second: pawprints-twemoji-1024_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 709
+        width: 103
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a7ff7e760c19540800000000000000
+      internalID: 5012999412746517109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_1
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 794
+        width: 125
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd51f795ba01d9920800000000000000
+      internalID: 2998571255025571295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_2
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 794
+        width: 125
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c54eb386f2bf7a270800000000000000
+      internalID: 8261848222465254492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_3
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 709
+        width: 104
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0982320c39a47fa90800000000000000
+      internalID: -7280268274176939888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_4
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 485
+        width: 332
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d21c40b88fea37b60800000000000000
+      internalID: 7742724566887481645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_5
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 339
+        width: 125
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce1d909fe0dd303b0800000000000000
+      internalID: -5547347259612868116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_6
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 339
+        width: 125
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59d744309bb5e85e0800000000000000
+      internalID: -1905484742149243499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_7
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 254
+        width: 104
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9d74dcaba8883eb0800000000000000
+      internalID: -4739888336887054950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_8
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 31
+        width: 332
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02fe654f72da1fde0800000000000000
+      internalID: -1301068430218694880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pawprints-twemoji-1024_9
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 254
+        width: 103
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88bb749126bfe2850800000000000000
+      internalID: 6354292523015846792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pawprints-twemoji-1024_0: 5012999412746517109
+      pawprints-twemoji-1024_1: 2998571255025571295
+      pawprints-twemoji-1024_2: 8261848222465254492
+      pawprints-twemoji-1024_3: -7280268274176939888
+      pawprints-twemoji-1024_4: 7742724566887481645
+      pawprints-twemoji-1024_5: -5547347259612868116
+      pawprints-twemoji-1024_6: -1905484742149243499
+      pawprints-twemoji-1024_7: -4739888336887054950
+      pawprints-twemoji-1024_8: -1301068430218694880
+      pawprints-twemoji-1024_9: 6354292523015846792
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
