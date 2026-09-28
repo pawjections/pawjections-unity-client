@@ -2,6 +2,11 @@
 
 An interactive game system designed to encourage cats to engage in active play.
 
+Pawjections finds your cat with a webcam, using the
+[YOLOX](https://github.com/Megvii-BaseDetection/YOLOX) object detector running
+in Unity's
+[Inference Engine](https://docs.unity3d.com/Packages/com.unity.ai.inference@2.6/manual/index.html).
+
 ## Contributing
 
 Hello, thank you so much for wanting to contribute to Pawjections!
