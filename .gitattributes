@@ -91,6 +91,10 @@ Packages/packages-lock.json linguist-generated
 *.stl                   lfs
 *.ztl                   lfs
 
+# Neural network models
+*.onnx                  lfs
+*.sentis                lfs
+
 # Audio
 *.aif                   lfs
 *.aiff                  lfs
