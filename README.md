@@ -1,41 +1,42 @@
 # Pawjections
+
 An interactive game system designed to encourage cats to engage in active play.
 
 ## Contributing
 
-The Unity VCS repository is the canonical source of truth. GitHub is synchronized via GitSync for visibility and external contributions. External contributors may use GitHub exclusively — maintainers will sync merged changes back to Unity VCS.
+Hello, thank you so much for wanting to contribute to Pawjections! This project
+uses [Git](https://git-scm.com/) and is hosted on GitHub at
+[pawjections/pawjections-unity-client](https://github.com/pawjections/pawjections-unity-client).
 
-You may contribute through either Unity VCS or Git, depending on your workflow. Unity VCS offers tighter integration with the Unity Editor and is recommended for in-editor changes. Git may be simpler if you're accustomed to it or working with files outside the Unity Editor.
+### Prerequisites
 
-### Using Unity VCS
+- [Unity 6000.6.3f1](https://unity.com/releases/editor/archive) (install through Unity Hub)
+- [Git LFS](https://git-lfs.com/). Binary assets (images, audio, video, fonts, models) are stored with LFS. Run `git lfs install` once before cloning.
 
-> [!NOTE]
-> Follow these instructions if you do not have write access to the Unity VCS repository (ex. if you are an outside contributor), but still want to work with Unity VCS to track your changes. Otherwise, if you have write access, you may contribute directly to the repository.
+### Getting started
 
-1. [Fork the repository](https://github.com/thatrobotdev/Pawjections/fork)
-2. Pull your fork into [Unity VCS](https://docs.unity.com/ugs/en-us/manual/devops/manual/migrating-from-git#the-first-pull)
-3. Make changes to your fork (it is suggested to create a Task branch that works on one Issue for easy code review and merging. [You can see an example workflow here](https://docs.unity.com/ugs/en-us/manual/devops/manual/unity-version-control#example-workflow).)
-4. *(Optional)* Configure your [`gitsync.conf`](https://docs.unity.com/ugs/en-us/manual/devops/manual/migrating-from-git#the-gitsyncconf-file) file to link your Unity VCS changesets to your GitHub identity. This ensures your contributions appear correctly attributed when mirrored to GitHub.
-    1. Retrieve your Unity VCS username
-        ```sh
-        $ cm whoami
-        uvcs_user
-        ```
-    2. Add the following to your `gitsync.conf` file.
-        ```sh
-        [email-mapping]
-        uvcs_user = user@email.com
-        ```
-        where `user@email` is an [email associated with your GitHub account](https://docs.github.com/en/account-and-profile/how-tos/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/adding-an-email-address-to-your-github-account).
+1. [Fork the repository](https://github.com/pawjections/pawjections-unity-client/fork)
+2. Clone your fork and open the project folder in Unity Hub.
+3. Create a branch for your change (ideally one Issue per branch for easy code review).
+4. Commit your changes and push your branch to your fork.
+5. Create a Pull Request targeting `main`.
 
-        **Note**: Your Unity VCS username could be formatted as an email, so `user@domain.com = user@domain.com` is a valid mapping.
+### Merging scenes and prefabs (optional)
 
-5. [Push your branch to GitHub](https://docs.unity.com/ugs/en-us/manual/devops/manual/migrating-from-git#pushing-to-git).
-6. Create a Pull request targeting upstream with your changes.
+Unity's [Smart Merge](https://docs.unity3d.com/6000.6/Documentation/Manual/SmartMerge.html)
+tool, UnityYAMLMerge, resolves conflicts in scenes, prefabs, and other Unity YAML files much
+better than a plain text merge. To use it with `git mergetool`, add the following to your
+`.git/config` or `~/.gitconfig`:
 
-### Using Git
+```ini
+[merge]
+    tool = unityyamlmerge
+[mergetool "unityyamlmerge"]
+    trustExitCode = false
+    cmd = '<path to UnityYAMLMerge>' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
+```
 
-1. [Fork the repository](https://github.com/thatrobotdev/Pawjections/fork)
-2. Make changes to your fork.
-3. Push your branch to GitHub.
-4. Create a Pull request targeting upstream with your changes.
+For editors installed through Unity Hub, `<path to UnityYAMLMerge>` is:
+
+- macOS: `/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/Helpers/UnityYAMLMerge`
+- Windows: `C:\Program Files\Unity\Hub\Editor\6000.6.3f1\Editor\Data\Tools\UnityYAMLMerge.exe`
