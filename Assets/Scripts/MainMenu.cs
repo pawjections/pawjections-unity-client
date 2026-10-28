@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject titleScreen;
+    public TMP_Text versionLabel;
 
     [Tooltip("Dark overlay shown behind every screen except the title screen")]
     public GameObject pageBackground;
@@ -13,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
+        versionLabel.text = $"Pawjections {Application.version}";
         Show(titleScreen);
     }
 
@@ -23,6 +26,7 @@ public class MainMenu : MonoBehaviour
             s.SetActive(s == screen);
         }
 
+        versionLabel.gameObject.SetActive(screen == titleScreen);
         pageBackground.SetActive(screen != titleScreen);
     }
 
