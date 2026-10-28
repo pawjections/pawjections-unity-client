@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
+        var settings = gameObject.AddComponent<SettingsMenu>();
+        settings.ShowTitleButton = true;
         Show(titleScreen);
     }
 

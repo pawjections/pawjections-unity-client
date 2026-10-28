@@ -7,13 +7,13 @@ using UnityEngine;
 /// shows a marker in each corner and the camera feed in the middle; click where
 /// each marker appears in the feed. The result is saved between runs.
 ///
-/// Keys: C calibrate, V toggle the camera preview. While calibrating:
-/// Enter save, R start over, Esc cancel.
+/// While calibrating: Enter save, R start over, Esc cancel.
 /// </summary>
 [RequireComponent(typeof(CatVision))]
 public class CameraCalibration : MonoBehaviour
 {
     const string PrefsKey = "CameraCalibration.corners";
+    const string RequestCalibrationPrefsKey = "CameraCalibration.requestOnNextGame";
 
     // Screen corners in click order, normalized with (0, 0) at the top-left
     static readonly Vector2[] ScreenCorners = { new(0, 0), new(1, 0), new(1, 1), new(0, 1) };
@@ -39,6 +39,7 @@ public class CameraCalibration : MonoBehaviour
     readonly List<Vector2> _clicks = new();
 
     public bool IsCalibrated => _calibrated;
+    public bool IsCalibrating => _calibrating;
 
     void Awake()
     {
@@ -48,7 +49,14 @@ public class CameraCalibration : MonoBehaviour
 
     void Start()
     {
-        if (calibrateIfMissing && !_calibrated)
+        bool requested = PlayerPrefs.GetInt(RequestCalibrationPrefsKey, 0) != 0;
+        if (requested)
+        {
+            PlayerPrefs.DeleteKey(RequestCalibrationPrefsKey);
+            PlayerPrefs.Save();
+            BeginCalibration();
+        }
+        else if (calibrateIfMissing && !_calibrated)
             BeginCalibration();
     }
 
@@ -130,12 +138,6 @@ public class CameraCalibration : MonoBehaviour
 
         switch (e.keyCode)
         {
-            case KeyCode.C:
-                BeginCalibration();
-                break;
-            case KeyCode.V:
-                showPreview = !showPreview;
-                break;
             case KeyCode.R when _calibrating:
                 _clicks.Clear();
                 break;
@@ -244,7 +246,7 @@ public class CameraCalibration : MonoBehaviour
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize /= 2;
         GUI.Label(new Rect(feed.Value.x, feed.Value.yMax + 4, feed.Value.width, style.fontSize * 1.6f),
-            $"cat {_vision.Confidence:0.00}" + (_calibrated ? "" : " · uncalibrated, press C"), style);
+            $"cat {_vision.Confidence:0.00}" + (_calibrated ? "" : " · uncalibrated"), style);
     }
 
     /// <summary>Draws the camera feed fitted inside the area and returns where it went.</summary>

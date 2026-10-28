@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(CatDetector))]
 public class CatAura : MonoBehaviour
 {
+    const string DetectionPrefsKey = "Settings.showCatDetection";
+
     public Color color = new(1f, 0.15f, 0.75f);
 
     [Tooltip("Disc radius in world units. Replaced by the mice's flight distance when there's a MouseSpawner")]
@@ -20,15 +22,18 @@ public class CatAura : MonoBehaviour
     CatDetector _detector;
     SpriteRenderer _disc;
     float _visibility;
+    bool _detectionVisible;
 
     void Awake()
     {
         _detector = GetComponent<CatDetector>();
+        _detectionVisible = PlayerPrefs.GetInt(DetectionPrefsKey, 0) != 0;
 
         _disc = new GameObject("Cat Aura").AddComponent<SpriteRenderer>();
         _disc.sprite = CreateDiscSprite();
         _disc.sortingOrder = -1; // under the mice
         _disc.color = Color.clear;
+        _disc.enabled = _detectionVisible;
     }
 
     void Start()
@@ -41,7 +46,7 @@ public class CatAura : MonoBehaviour
     void Update()
     {
         // Unscaled time so it keeps working while calibration pauses the game
-        _visibility = Mathf.MoveTowards(_visibility, _detector.HasCat ? 1 : 0, Time.unscaledDeltaTime * FadeSpeed);
+        _visibility = Mathf.MoveTowards(_visibility, _detectionVisible && _detector.HasCat ? 1 : 0, Time.unscaledDeltaTime * FadeSpeed);
         float pulse = 0.8f + 0.2f * Mathf.Sin(Time.unscaledTime * PulseSpeed);
 
         _disc.transform.position = _detector.GetCatWorldPosition();
@@ -51,7 +56,7 @@ public class CatAura : MonoBehaviour
 
     void OnGUI()
     {
-        if (!showScreenBorder || _visibility <= 0)
+        if (!_detectionVisible || !showScreenBorder || _visibility <= 0)
             return;
 
         // Draw behind the calibration screen
@@ -66,6 +71,13 @@ public class CatAura : MonoBehaviour
         GUI.DrawTexture(new Rect(w - t, 0, t, h), Texture2D.whiteTexture);
 
         GUI.color = previous;
+    }
+
+    public void SetDetectionVisible(bool visible)
+    {
+        _detectionVisible = visible;
+        if (_disc != null)
+            _disc.enabled = visible;
     }
 
     void OnDestroy()

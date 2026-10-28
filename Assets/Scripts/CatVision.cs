@@ -72,6 +72,7 @@ public class CatVision : MonoBehaviour
         CameraTexture = new WebCamTexture(cameraName, 1280, 720);
         CameraTexture.Play();
         PlayerPrefs.SetString(CameraPrefsKey, cameraName);
+        PlayerPrefs.Save();
 
         // Webcams report a placeholder 16x16 size until the first frame arrives
         yield return new WaitUntil(() => CameraTexture.width > 16);
